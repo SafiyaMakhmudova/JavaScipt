@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "xurmo",
+    "count": 1,
+    "price": "15000"
+  },
+  {
+    "id": 2,
+    "name": "olma",
+    "count": 3,
+    "price": "5000"
+  },
+  {
+    "id": 3,
+    "name": "uzum",
+    "count": 3,
+    "price": "12000"
+  },
+  {
+    "id": 4,
+    "name": "tarvuz",
+    "count": 2,
+    "price": "30000"
+  },
+  {
+    "id": 5,
+    "name": "shaftoli",
+    "count": 14,
+    "price": "11000"
+  }
+]

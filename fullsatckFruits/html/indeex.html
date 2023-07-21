@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form style=" width:400px; margin: 0 auto;" action="" class="addFruits">
+
+        
+        <input style="padding: 10px 25px;" type="text" name="name" class="name" placeholder="name"/><br /><br />
+        <input style="padding: 10px 25px;" type="text" name="count" class="count"  placeholder="count"/> <br /><br />
+        <input style="padding: 10px 25px;" type="text" name="price" class="price" placeholder="price"> <br/><br/>
+        <div style="display: flex; column-gap: 70px; align-items: flex-start;">
+            <input style="padding: 5px 20px; background-color: salmon" type="submit" class="btn1" value="Buy" />
+            <input style="padding: 5px 20px; background-color: blue;" type="submit" class="btn2" value = "Sell">
+        </div>
+          
+    </form>
+    <script>
+
+    async function bootstrap() {
+      const data = await fetch("http://localhost:5000/fruits");
+      //console.log(await data.json());
+    }
+    bootstrap();
+
+    const form = document.querySelector(".addFruits");
+    const name = document.querySelector(".name");
+    const count = document.querySelector(".count");
+    const price = document.querySelector(".price");
+    const btn1 = document.querySelector(".btn1");
+    const btn2 = document.querySelector(".btn2")
+
+    btn1.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const nameValue = name.value;
+      const countValue = count.value;
+      const priceValue = price.value; 
+
+      await fetch("http://localhost:5000/fruits", {
+        body: JSON.stringify({name: nameValue, count: countValue, price:priceValue, status:"buy"}),
+        method: "POST",
+      });
+
+      bootstrap();
+      localStorage.setItem("name", nameValue);
+      localStorage.setItem("count", countValue);
+      localStorage.setItem("price", priceValue)
+
+      name.value = "";
+      count.value = "";
+      price.value = "";
+    });
+
+    
+    btn2.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const nameValue = name.value;
+      const countValue = count.value;
+      const priceValue = price.value; 
+
+      await fetch("http://localhost:5000/fruits", {
+        body: JSON.stringify({name: nameValue, count: countValue, price:priceValue, status:"sell"}),
+        method: "POST",
+      });
+
+      bootstrap();
+      localStorage.setItem("name", nameValue);
+      localStorage.setItem("count", countValue);
+      localStorage.setItem("price", priceValue)
+    
+      name.value = "";
+      count.value = "";
+      price.value = "";
+    });
+
+    </script>
+</body>
+</html>
